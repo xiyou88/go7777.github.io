@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下载</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes glow {
+    0%,100% { opacity: 0.12; transform: scale(1); }
+    50% { opacity: 0.22; transform: scale(1.05); }
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    animation: glow 6s ease-in-out infinite;
+  }
+  .orb1 { width: 400px; height: 400px; top: -120px; right: -100px; background: rgba(38,204,196,0.1); }
+  .orb2 { width: 300px; height: 300px; bottom: -80px; left: -80px; background: rgba(38,204,196,0.08); animation-delay: 3s; }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .download-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: #26CCC4;
+    border: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .download-item:nth-child(1) { animation: fadeUp 0.5s ease both 0.05s; }
+  .download-item:nth-child(2) { animation: fadeUp 0.5s ease both 0.1s; }
+  .download-item:nth-child(3) { animation: fadeUp 0.5s ease both 0.15s; }
+  .download-item:nth-child(4) { animation: fadeUp 0.5s ease both 0.2s; }
+  .download-item:nth-child(5) { animation: fadeUp 0.5s ease both 0.25s; }
+  .download-item:hover {
+    background: #20b5ae;
+    box-shadow: 0 4px 24px rgba(38,204,196,0.3);
+    transform: translateY(-2px);
+  }
+
+  .item-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 14px;
+    background: rgba(255,255,255,0.18);
+  }
+  .item-icon svg { width: 24px; height: 24px; fill: #fff; }
+
+  .item-info { flex: 1; min-width: 0; }
+  .item-name { font-size: 15px; font-weight: 700; color: #fff; }
+  .item-desc { font-size: 12px; color: rgba(255,255,255,0.9); margin-top: 3px; }
+
+  .item-action {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: #26CCC4;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .download-item:hover .item-action {
+    background: rgba(255,255,255,0.95);
+  }
+
+  @media (max-width: 500px) {
+    body { padding: 30px 16px; }
+    .download-item { padding: 14px 14px; }
+    .item-icon { width: 40px; height: 40px; margin-right: 12px; }
+    .item-icon svg { width: 20px; height: 20px; }
+    .item-name { font-size: 14px; }
+    .item-desc { font-size: 11px; }
+    .item-action { padding: 7px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+
+<div class="container">
+  <div style="text-align:center;margin-bottom:24px;animation:fadeUp 0.4s ease both;">
+    <h2 style="font-size:24px;font-weight:700;color:#222;">请选择您的设备下载</h2>
+  </div>
+  <div class="download-list">
+
+    <a id="dl-android" class="download-item" href="#">
+      <div class="item-icon ic-android">
+        <svg viewBox="0 0 24 24"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
+      </div>
+      <div class="item-info">
+        <div class="item-name">Android 客户端</div>
+        <div class="item-desc" id="desc-android">APK 直接安装</div>
+      </div>
+      <span class="item-action act-android">下载安装</span>
+    </a>
+
+    <a id="dl-ios-store" class="download-item" href="help/index.html">
+      <div class="item-icon ic-ios">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      </div>
+      <div class="item-info">
+        <div class="item-name">iOS 海外 App Store</div>
+        <div class="item-desc">点击去获取海外 Apple ID 下载客户端</div>
+      </div>
+      <span class="item-action act-ios">立即获取</span>
+    </a>
+
+    <a id="dl-ios-web" class="download-item" href="web/index.html">
+      <div class="item-icon ic-ios">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      </div>
+      <div class="item-info">
+        <div class="item-name">iOS 网页端方案</div>
+        <div class="item-desc">需先登录查看教程使用</div>
+      </div>
+      <span class="item-action act-ios">查看教程</span>
+    </a>
+
+    <a id="dl-windows" class="download-item" href="#">
+      <div class="item-icon ic-windows">
+        <svg viewBox="0 0 24 24"><path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .08V5.21L20 3zm-10 9.04l10 .08V21l-10-1.39v-7.57zM3 13l6 .09v6.81l-6-1.01V13z"/></svg>
+      </div>
+      <div class="item-info">
+        <div class="item-name">Windows 客户端</div>
+        <div class="item-desc" id="desc-windows">支持 Win10 及以上</div>
+      </div>
+      <span class="item-action act-windows">下载安装</span>
+    </a>
+
+    <a id="dl-macos" class="download-item" href="#">
+      <div class="item-icon ic-macos">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      </div>
+      <div class="item-info">
+        <div class="item-name">macOS 客户端</div>
+        <div class="item-desc" id="desc-macos">支持 macOS 11.0+</div>
+      </div>
+      <span class="item-action act-macos">下载安装</span>
+    </a>
+
+  </div>
+</div>
+
+<script>
+  var platformTargets = {
+    android: {
+      url: "https://github.com/xiyou88/go7777.github.io/releases/download/hudun-latest-apk/hudun-v4.4.0-19.apk",
+      version: "v4.4.0",
+      desc: "APK 直接安装"
+    },
+    windows: {
+      url: "https://github.com/xiyou88/go7777.github.io/releases/download/hudun-latest-exe/hudun-v2.6.0-56.exe",
+      version: "v2.6.0",
+      desc: "支持 Win10 及以上"
+    },
+    macos: {
+      url: "https://github.com/xiyou88/go7777.github.io/releases/download/hudun-latest-pkg/hudun-v2.3.0-67.pkg",
+      version: "v2.3.0",
+      desc: "支持 macOS 11.0+"
+    }
+  };
+
+  function applyDownloadTargets() {
+    var a = platformTargets.android;
+    var w = platformTargets.windows;
+    var m = platformTargets.macos;
+    document.getElementById('dl-android').href = a.url;
+    document.getElementById('desc-android').textContent = a.version + ' | ' + a.desc;
+    document.getElementById('dl-windows').href = w.url;
+    document.getElementById('desc-windows').textContent = w.version + ' | ' + w.desc;
+    document.getElementById('dl-macos').href = m.url;
+    document.getElementById('desc-macos').textContent = m.version + ' | ' + m.desc;
+  }
+
+  applyDownloadTargets();
+</script>
+</body>
+</html>
