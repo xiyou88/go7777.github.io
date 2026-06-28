@@ -1,0 +1,16 @@
+{
+  "name": "护盾APP",
+  "short_name": "护盾APP",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "./images/icon-cp.png",
+      "sizes": "108x108",
+      "type": "image/png"
+    }
+  ]
+}
